@@ -420,12 +420,6 @@ template {
 HTML,
 body,
 div,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 ul,
 ol,
 dl,
@@ -457,9 +451,6 @@ address,
 caption,
 cite,
 code,
-dfn,
-em,
-strong,
 th,
 var {
     font-style: normal;
@@ -585,10 +576,12 @@ li {
             line-height: $height-aside-tilte;
             text-align: center;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             .logoimg {
                 width: $width-aside-img;
                 height: $height-aside-img;
-                vertical-align: middle;
                 background: #fff;
                 border-radius: 50%;
                 padding: 3px;
@@ -598,7 +591,6 @@ li {
                 color: #fff;
                 font-weight: 600;
                 font-size: 20px;
-                vertical-align: middle;
                 padding-left: 10px;
             }
         }

@@ -5,7 +5,7 @@
       <el-aside class="main-cont main-left">
         <div class="tilte" :style="{background: backgroundColor}">
           <img alt class="logoimg" :src="$GIN_VUE_ADMIN.appLogo">
-          <h2 v-if="isSider" class="tit-text" :style="{color:textColor}">{{ $GIN_VUE_ADMIN.appName }}</h2>
+          <div v-if="isSider" class="tit-text" :style="{color:textColor}">{{ $GIN_VUE_ADMIN.appName }}</div>
         </div>
         <Aside class="aside" />
       </el-aside>
@@ -79,11 +79,13 @@
           </div>
         </transition>
         <router-view v-if="reloadFlag" v-slot="{ Component }" v-loading="loadingFlag" element-loading-text="正在加载中" class="admin-box">
+          <div>asdasdasdas</div>
           <transition mode="out-in" name="el-fade-in-linear">
             <keep-alive :include="routerStore.keepAliveRouters">
               <component :is="Component" />
             </keep-alive>
           </transition>
+      
         </router-view>
         <BottomInfo />
         <setting />
@@ -200,15 +202,21 @@ const changeUserAuth = async(id) => {
 }
 
 const reloadFlag = ref(true)
+let reloadTimer = null
 const reload = async() => {
-  if (route.meta.keepAlive) {
-    reloadFlag.value = false
-    await nextTick()
-    reloadFlag.value = true
-  } else {
-    const title = route.meta.title
-    router.push({ name: 'Reload', params: { title }})
+  if (reloadTimer) {
+    window.clearTimeout(reloadTimer)
   }
+  reloadTimer = window.setTimeout(async() => {
+    if (route.meta.keepAlive) {
+      reloadFlag.value = false
+      await nextTick()
+      reloadFlag.value = true
+    } else {
+      const title = route.meta.title
+      router.push({ name: 'Reload', params: { title }})
+    }
+  }, 400)
 }
 
 const isShadowBg = ref(false)
