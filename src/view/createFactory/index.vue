@@ -8,24 +8,24 @@
         :data="tableData"
         row-key="ID"
       >
-        <el-table-column align="left" label="ID" min-width="50" prop="ID" />
+        <!-- <el-table-column align="left" label="ID" min-width="50" prop="ID" /> -->
         <el-table-column align="left" label="工厂名" min-width="150" prop="userName" />
-        <el-table-column align="left" label="工厂描述" min-width="150" prop="nickName" />
+        <el-table-column align="left" label="工厂代码" min-width="150" prop="nickName" />
 
 
         <el-table-column label="操作" min-width="250" fixed="right">
           <template #default="scope">
-            <!-- <el-popover v-model:visible="scope.row.visible" placement="top" width="160">
-              <p>确定要删除此用户吗</p>
+            <el-popover v-model:visible="scope.row.visible" placement="top" width="160">
+              <p>确定要删除此工厂吗</p>
               <div style="text-align: right; margin-top: 8px;">
                 <el-button size="small" type="text" @click="scope.row.visible = false">取消</el-button>
-                <el-button type="primary" size="small" @click="deleteUserFunc(scope.row)">确定</el-button>
+                <el-button type="primary" size="small" @click="deleteFactoryFunc(scope.row)">确定</el-button>
               </div>
               <template #reference>
                 <el-button type="text" icon="delete" size="small">删除</el-button>
               </template>
-            </el-popover> -->
-            <el-button type="text" icon="edit" size="small" @click="openEdit(scope.row)">编辑</el-button>
+            </el-popover>
+            <!-- <el-button type="text" icon="edit" size="small" @click="openEdit(scope.row)">编辑</el-button> -->
             <!-- <el-button type="text" icon="magic-stick" size="small" @click="resetPasswordFunc(scope.row)">重置密码</el-button> -->
           </template>
         </el-table-column>
@@ -54,11 +54,11 @@
       <div style="height:60vh;overflow:auto;padding:0 12px;">
         <el-form ref="userForm" :rules="rules" :model="userInfo" label-width="80px">
           
-          <el-form-item label="工厂名" prop="nickName">
+          <el-form-item label="工厂名" prop="userName">
             <el-input v-model="userInfo.nickName" />
           </el-form-item>
-          <el-form-item label="工厂名前缀" prop="phone">
-            <el-input v-model="userInfo.phone" placeholder="用于创建为保管理员及工厂管理员账号的前缀"/>
+          <el-form-item label="工厂代码" prop="password">
+            <el-input v-model="userInfo.phone" placeholder="请输入英文代表公司"/>
           </el-form-item>
 
         </el-form>
@@ -202,8 +202,8 @@ const setOptions = (authData) => {
   setAuthorityOptions(authData, authOptions.value)
 }
 
-const deleteUserFunc = async(row) => {
-  const res = await deleteUser({ id: row.ID })
+const deleteFactoryFunc = async(row) => {
+  // const res = await deleteUser({ id: row.ID })
   if (res.code === 0) {
     ElMessage.success('删除成功')
     row.visible = false
@@ -223,12 +223,12 @@ const userInfo = ref({
 
 const rules = ref({
   userName: [
-    { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 5, message: '最低5位字符', trigger: 'blur' }
+    { required: true, message: '请输工厂名', trigger: 'blur' },
+    // { min: 5, message: '最低5位字符', trigger: 'blur' }
   ],
   password: [
-    { required: true, message: '请输入用户密码', trigger: 'blur' },
-    { min: 6, message: '最低6位字符', trigger: 'blur' }
+    { required: true, message: '请输入工厂代码', trigger: 'blur' },
+    // { min: 6, message: '最低6位字符', trigger: 'blur' }
   ],
   nickName: [
     { required: true, message: '请输入用户昵称', trigger: 'blur' }
