@@ -185,8 +185,7 @@ const enteraddFactoryDialog = async() => {
 const addFactoryDialog = ref(false)
 const closeaddFactoryDialog = () => {
   factoryForm.value.resetFields()
-  factoryInfo.value.headerImg = ''
-  factoryInfo.value.authorityIds = []
+
   addFactoryDialog.value = false
 }
 
