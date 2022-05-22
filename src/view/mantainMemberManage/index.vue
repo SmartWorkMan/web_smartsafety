@@ -14,7 +14,7 @@
         <el-table-column align="left" label="姓名" min-width="150" prop="name" />
         <el-table-column align="left" label="手机号" min-width="180" prop="phoneNumber" />
         <el-table-column align="left" label="部门" min-width="180" prop="depart" />
-        <el-table-column align="left" label="职称" min-width="150" prop="job" />
+        <el-table-column align="left" label="岗位" min-width="150" prop="job" />
 
         <el-table-column label="操作" min-width="250" fixed="right">
           <template #default="scope">
@@ -71,7 +71,7 @@
           <el-form-item label="部门" prop="depart">
             <el-input v-model="userInfo.depart" />
           </el-form-item>
-          <el-form-item label="职称" prop="job">
+          <el-form-item label="岗位" prop="job">
             <el-input v-model="userInfo.job" /> 
           </el-form-item>
 
